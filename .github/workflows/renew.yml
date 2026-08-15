@@ -52,7 +52,7 @@ jobs:
           LEME: ${{ secrets.LEME }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-          TG_API: ${{ secrets.TG_API }}
+          TG_API: ${{ secrets.TG_API || 'https://api.telegram.org' }}
           RENEW_THRESHOLD: ${{ secrets.RENEW_THRESHOLD || '900' }}
           COOKIE_DIR: /tmp/lemehost_cookies
           DEBUG_DIR: /tmp/lemehost_debug
