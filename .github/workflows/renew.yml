@@ -1,6 +1,9 @@
 name: LemeHost Auto Renewal
 
 on:
+  schedule:
+    # 每天 UTC 20:00 = 北京时间凌晨 4:00
+    - cron: "0 20 * * *"
   workflow_dispatch:
 
 jobs:
@@ -72,15 +75,3 @@ jobs:
         with:
           name: debug-${{ github.run_id }}
           path: /tmp/lemehost_debug/
-
-      - name: Schedule next run
-        if: always()
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-          SLEEP_SECONDS: ${{ secrets.SLEEP_SECONDS || '360' }}
-        run: |
-          echo "💤 Sleep ${SLEEP_SECONDS}s before next run..."
-          sleep "$SLEEP_SECONDS"
-          echo "🔁 Triggering next run..."
-          gh workflow run renew.yml
-          echo "✅ Next run scheduled"
