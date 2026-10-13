@@ -2,8 +2,8 @@ name: LemeHost Auto Renewal
 
 on:
   schedule:
-    # 每 30 分钟执行一次
-    - cron: "*/30 * * * *"
+    # 每 3 天 UTC 00:00 执行一次（北京时间 08:00）
+    - cron: "0 0 */3 * *"
   workflow_dispatch:
 
 jobs:
